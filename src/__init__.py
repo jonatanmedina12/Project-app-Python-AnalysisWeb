@@ -4,7 +4,9 @@ from src.controller.vulnerability_scanner import VulnerabilityScanner
 def exe():
     v = VulnerabilityScanner()
 
-    print(    v.search_cves("ProFTPD 1.3.5"))
+    cves_encontradas=v.search_cves("ProFTPD 1.3.5")
+
+    v.pretty_print(cves_encontradas)
 
 
 
