@@ -1,4 +1,7 @@
 requests~=2.32.3
 pandas~=2.2.3
 beautifulsoup4~=4.12.3
-rich
+rich~=13.9.4
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
